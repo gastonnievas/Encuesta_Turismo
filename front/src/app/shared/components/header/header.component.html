@@ -1,0 +1,36 @@
+<nav class="navContainer navbar navbar-expand-lg navbar-dark ">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="navContainer collapse navbar-collapse" id="navbarSupportedContent" [ngClass]="{ 'show': isCollapsed }">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+		    <a href="http://www.minaclavero.gov.ar/turismo.php" class="display-8 font-weight-bold" target="_blank">Turismo</a>        
+      </li>
+      <li class="nav-item">
+        <a href="http://www.minaclavero.gov.ar/vecinos.php" class="display-8 font-weight-bold" target="_blank">Municipalidad</a>
+      </li>
+      <li class="nav-item ">
+        <div class="d-lg-none">
+          <a class="display-8 font-weight-bold" routerLink="/home">Home</a>
+        </div>
+        <img src="../../../../assets/logominaclaver.png" alt="Logo" class="logo" routerLink="/home">
+      </li>
+      <li class="nav-item">
+        <a class="display-8 font-weight-bold" routerLink="/form">Encuesta</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/contacto" class="display-8 font-weight-bold">Contacto</a>
+      </li>
+      <li class="nav-item last-child">
+        <div class="d-lg-none">
+          <a class="display-8 font-weight-bold"  *ngIf="_userService.loggedIn()" (click)="_userService.logOut()" routerLink="/home">Cerrar Sesión</a>
+        </div>
+        <a class="display-8 font-weight-bold logOut" target="_blank" *ngIf="_userService.loggedIn()" (click)="_userService.logOut()">
+          <i class="fas fa-sign-out-alt fa-lg"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

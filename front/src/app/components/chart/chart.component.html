@@ -1,0 +1,217 @@
+<h3>¿Qué gráfico desea ver?</h3>
+<mat-form-field>
+  <mat-label>Categorías</mat-label>
+  <select [(ngModel)]="selectedChartName" matNativeControl required>
+    <option *ngFor="let chartName of chartNames" [value]="chartName">{{ chartName }}</option>
+  </select>
+</mat-form-field>
+
+
+<div class="contenedor">
+<div *ngIf="selectedChartName === 'Turista'" class="turista individual">
+    
+    <div class="contenedorGraficos">
+      <h2> Gráfica de Géneros</h2>
+      <canvas baseChart
+      [type]="'pie'"
+      [datasets]="pieChartDatasets"
+      [labels]="pieChartLabels"
+      [options]="pieChartOptions"
+      [legend]="true"
+      ></canvas>
+    </div>
+  </div>
+
+  <div *ngIf="selectedChartName === 'Turista'" class="turista" >
+    <div class="contenedorGraficos">
+      <h2>Gráfica de Edad</h2>
+      <canvas baseChart
+      [type]="'pie'"
+      [datasets]="pieChartDatasetsEdad"
+      [labels]="pieChartLabelsEdad"
+      [options]="pieChartOptions"
+      [legend]="true"
+      
+      ></canvas>
+    </div>
+  </div>
+
+  <div *ngIf="selectedChartName === 'Turista'" class="turista" >
+   
+    <div class="contenedorGraficos">
+      <h2>Gráfica de Procedencia</h2>
+    <canvas baseChart
+      [type]="'bar'"
+      [data]="barChartData"
+      [options]="chartOptionsBar"
+      [legend]="false"
+      
+    ></canvas>
+</div>
+  </div>
+  <div *ngIf="selectedChartName === 'Turista'" class="turista">
+   
+    <div class="contenedorGraficos">
+      <h2>Mes de Estadia</h2>
+    <canvas baseChart
+      [type]="'bar'"
+      [datasets]="barChartDataMes.datasets"
+      [labels]="barChartDataMes.labels"
+      [options]="chartOptionsBar"
+      [legend]="false"
+      
+    ></canvas>
+</div>
+  </div>
+
+
+  <div *ngIf="selectedChartName === 'Medios'" >
+    
+    <div class="contenedorGraficos" >
+      <h2>Medios de Difusión</h2>
+    <canvas baseChart
+      [type]="'pie'"
+      [datasets]="pieChartDatasetsDifusion"
+      [labels]="pieChartLabelsDifusion"
+      [options]="pieChartOptions"
+      [legend]="true"
+      
+    ></canvas>
+</div>
+  </div>
+
+  <div *ngIf="selectedChartName === 'Motivo'" >
+    
+    <div class="contenedorGraficos">
+      <h2>¿Por qué motivo eligió Mina Clavero para pasar sus vacaciones?</h2>
+    <canvas baseChart
+      [type]="'bar'"
+      [datasets]="barChartDataMotivo.datasets"
+      [labels]="barChartDataMotivo.labels"
+      [options]="chartOptionsBar"
+      [legend]="false"
+      
+    ></canvas>
+</div>
+  </div>
+
+  <div *ngIf="selectedChartName === 'Hospedaje'" style="display: block;">
+    
+    <div class="contenedorGraficos">
+      <h2>Reserva</h2>
+    <canvas baseChart 
+      [type]="'pie'"
+      [datasets]="pieChartDatasetsReserva"
+      [labels]="pieChartLabelsReserva"
+      [options]="pieChartOptions"
+      [legend]="true"
+      
+    ></canvas>
+</div>
+  </div>
+
+  
+  <div *ngIf="selectedChartName === 'Hospedaje'" style="display: block; margin-top: 50px;">
+   
+    <div class="contenedorGraficos">
+      <h2>Tipo de Hospedaje</h2>
+    <canvas baseChart
+      [type]="'bar'"
+      [datasets]="barChartDataTipoHospedaje.datasets"
+      [labels]="barChartDataTipoHospedaje.labels"
+      [options]="chartOptionsBar"
+      [legend]="false"
+      
+    ></canvas>
+</div>
+  </div>
+
+  
+  <div *ngIf="selectedChartName === 'Hospedaje'" style="display: block;">
+
+    <div class="contenedorGraficos">
+      <h2>Calificación del Servicio</h2>
+    <canvas baseChart
+      [type]="'pie'"
+      [datasets]="pieChartDatasetsCalificacionH"
+      [labels]="pieChartLabelsCalificacionH"
+      [options]="pieChartOptions"
+      [legend]="true"
+      
+    ></canvas>
+</div>
+  </div>
+
+  <div *ngIf="selectedChartName === 'Oficina'" style="display: block;">
+    
+    <div class="contenedorGraficos">
+      <h2>Solicitud de infromación en oficina</h2>
+    <canvas baseChart 
+      [type]="'pie'"
+      [datasets]="pieChartDatasetsOficinaOption"
+      [labels]="pieChartLabelsOficinaOption"
+      [options]="pieChartOptions"
+      [legend]="true"
+      
+    ></canvas>
+</div>
+  </div>
+
+  <div *ngIf="selectedChartName === 'Oficina'" style="display: block; margin-top: 50px;">
+ 
+    <div class="contenedorGraficos">
+      <h2>Tipo de Información</h2>
+    <canvas baseChart
+      [type]="'bar'"
+      [data]="barChartDataTipoInformacion"
+      [options]="chartOptionsBar"
+      [legend]="false"
+      
+    ></canvas>
+</div>
+  </div>
+
+  
+  <div *ngIf="selectedChartName === 'Oficina'" style="display: block;">
+    
+    <div class="contenedorGraficos">
+      <h2>Calificación de la información</h2>
+    <canvas baseChart 
+      [type]="'pie'"
+      [datasets]="pieChartDatasetsCalificacionI"
+      [labels]="pieChartLabelsCalificacionI"
+      [options]="pieChartOptions"
+      [legend]="true"
+      
+    ></canvas>
+</div>
+  </div>
+
+  <div *ngIf="selectedChartName === 'Recomendaria'" style="display: block;">
+    
+    <div class="contenedorGraficos">
+      <h2>¿Considera Mina Clavero un destino completo?</h2>
+    <canvas baseChart class="corrector2"
+      [type]="'pie'"
+      [datasets]="pieChartDatasetsCalificacionMC"
+      [labels]="pieChartLabelsCalificacionMC"
+      [options]="pieChartOptions"
+      [legend]="true"
+      
+    ></canvas>
+</div>
+  </div>
+
+  <div *ngIf="selectedChartName === 'Recomendaria'" style="display: block;">
+    <div class="contenedorGraficos">
+      <h2>¿Recomendaría Mina Clavero como destino turístico?</h2>
+      <canvas baseChart class="corrector"
+      [type]="'pie'"
+      [datasets]="pieChartDatasetsRecomendaria"
+      [labels]="pieChartLabelRecomendaria"
+      [options]="pieChartOptions"
+      [legend]="true"
+      ></canvas>
+    </div>
+  </div>
+</div>

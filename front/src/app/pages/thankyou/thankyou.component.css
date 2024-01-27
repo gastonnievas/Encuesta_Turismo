@@ -1,0 +1,229 @@
+.contenedor {
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    background-color: #198FBF;
+    opacity: 0.95;
+    padding-bottom: 20px;
+    margin-top: 100px;
+    /* margin-bottom: 50px; */
+    position: relative;
+    border-radius: 15px;
+}
+
+
+
+.contenedorDos{
+    padding-top: 5px;
+    margin-top: 80px;
+}
+
+h1{
+    font-size: 30px;
+    margin-top: 15px;
+    color: white;
+    font-family: 'Montserrat', sans-serif
+}
+
+h2{
+    color: white;
+    font-family: 'Montserrat', sans-serif
+}
+
+p{
+    color: white;
+    margin-top: 15px;
+    font-size: 20px;
+    font-family: 'Karla', sans-serif;
+}
+
+mat-label {
+    color: white;
+    margin-top: 15px;
+    margin-right: 5px;
+    font-size: 17px;
+    font-family: 'Karla', sans-serif;
+}
+
+input {
+    border-radius: 10px;
+    border-color: white;
+    border-top: white;
+    border-left: white;
+    height: 25px;
+    margin-left: 10px;
+    width: 250px;
+}
+
+.button-home{
+    background-color: white;
+    color: #198FBF;
+    padding: 5px 20px;
+    font-size: 18px;
+    margin-top: 30px;
+    font-family: 'Karla', sans-serif;
+}
+
+.button-home:hover{
+    background-color:#0f749c;
+    color: white;
+}
+
+.formNl{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.ng-valid:not(form).ng-touched {
+    border-left: 5px solid #42A948;
+}
+
+.ng-invalid:not(form).ng-touched {
+    border-left: 5px solid #A94442;
+}
+
+.texto-advertencia {
+    font-style: italic;
+    font-size:15px;
+    color: white;
+}
+
+.boton-enviar-mail {
+    background-color: white;
+    color: #198FBF;
+    padding: 5px 15px;
+    font-size: 15px;
+    margin-top: 5px;
+    margin-left: 10px;
+    font-family: 'Karla', sans-serif;
+}
+
+.boton-enviar-mail:hover {
+    background-color: #0f749c;
+    color: white;
+}
+
+.loading-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #0f749c;
+    border-radius: 15px;    
+}
+
+::ng-deep .mat-progress-spinner circle{
+    
+    margin-bottom: 10px;
+    stroke: white;
+}
+
+.loading-spinner p {
+    font-size: 18px;
+}
+
+
+
+/* Media Queries */
+@media (max-width: 992px) {
+    .contenedor{
+     max-width: 700px;
+    }
+ 
+    h1{
+     font-size: 28px;
+    }
+ 
+    p{
+     font-size: 18px;   
+    }
+ 
+    .button-home{
+     padding: 10px;
+     font-size: 15px;
+     margin-top: 20px;
+     }
+ }
+
+ @media (max-width: 768px) {
+
+    .contenedor{
+        max-width: 500px;
+       }
+
+       .contenedorDos{
+        padding-top: 5px;
+        margin-top: 100px;
+        max-width: 500px;
+       }
+    
+       h1{
+        font-size: 25px;
+       }
+
+       h2{
+        font-size: 17px;
+       }
+    
+       p{
+        font-size: 15px;   
+       }
+    
+       .button-home{
+        padding: 10px;
+        font-size: 15px;
+        margin-top: 20px;
+        }
+
+        mat-label {
+            font-size: 15px;
+        }
+}
+
+@media (max-width: 576px) {
+
+    .contenedor{
+     max-width: 300px;
+    }
+ 
+    h1{
+     font-size: 20px;
+    }
+ 
+    p, h2{
+     font-size: 15px;   
+    }
+
+    mat-label {
+        font-size: 13px;
+        margin-bottom: 8px;
+    }
+ 
+    .button-home{
+     padding: 10px;
+     font-size: 15px;
+     margin-top: 20px;
+     }
+
+     .formNl{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .boton-enviar-mail { 
+        margin-top: 15px;
+        margin-left: 10px;
+    }
+}

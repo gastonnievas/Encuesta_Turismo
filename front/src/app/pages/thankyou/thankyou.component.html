@@ -1,0 +1,37 @@
+<div class="contenedor" @enterState>
+    <h1 class="text-center">¡Gracias por participar!</h1>
+    <p>Tus respuestas nos ayudan a mejorar</p>
+    <button mat-button color="primary" class="button-home" (click)="button()">Volver al inicio</button>
+</div>
+<div class="contenedor contenedorDos" @enterState>
+    <div *ngIf="!isSubscribed" class="text-center">
+        <h2 class="text-center">¿Quieres más información? ¡Te contactamos!</h2>
+        <form [formGroup]="emailForm" (submit)="newsletter()" class="formNl">
+            <div>
+                <mat-label>Correo Electrónico: </mat-label>
+                <input matInput type="email" id="email" name="email" formControlName="email" required />
+                <div>
+                    <mat-error *ngIf="email.errors?.['required'] && email.touched" class="texto-advertencia">
+                        Por favor, ingrese un correo electrónico
+                    </mat-error>
+                    <mat-error *ngIf="email.errors?.['email']" class="texto-advertencia">
+                        Por favor, ingrese un correo electrónico válido
+                    </mat-error>
+                </div>
+                
+            </div>
+            <button mat-raised-button color="primary" type="submit" class="boton-enviar-mail">
+                Enviar
+            </button>
+        </form>
+    </div>
+    <div *ngIf="enviando" class="loading-spinner">
+        <mat-progress-spinner diameter="40" mode="indeterminate"></mat-progress-spinner>
+        <p>Enviando</p>
+    </div>
+    <div *ngIf="isSubscribed" class="text-center">
+        <h1>Completado</h1>
+        <p>Pronto recibirás información en tu correo electrónico</p>
+    </div>
+</div>
+

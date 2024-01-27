@@ -1,0 +1,53 @@
+<div class="contenedor">
+
+  <section class="section">
+    <div *ngIf="!isSubscribed" class="container">
+      <section class="hero is-primary is-bold">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title">Comunicate con Nosotros</h1>
+          </div>
+        </div>
+      </section>
+      <form [formGroup]="formulario" (ngSubmit)="onSubmit(formulario.value)">
+        <div class="field">
+          <label class="label">Nombre y Apellido</label>
+          <input formControlName="Name" id="name" type="text" value="Name" name="nombre" class="input" placeholder="Nombre Completo">
+          <mat-error *ngIf="Name.errors?.['required'] && Name.touched" class="texto-advertencia">
+            Por favor, ingrese su nombre
+        </mat-error>
+        </div>
+        
+        <div class="field">
+          <label class="label">Correo Electronico</label>
+          <input formControlName="email" type="text" value="email" name="email" class="input" placeholder="Correo Electronico">
+          <mat-error *ngIf="email.errors?.['required'] && email.touched" class="texto-advertencia">
+            Por favor, ingrese un correo electrónico
+        </mat-error>
+        <mat-error *ngIf="email.errors?.['email']" class="texto-advertencia">
+            Por favor, ingrese un correo electrónico válido
+        </mat-error>
+        </div>
+        
+        <div class="field">
+          <label class="label">Dejanos tu Mensaje</label>
+          <textarea formControlName="message" name="mensaje" value="message" class="textarea" rows="4" placeholder="Tu mensaje"></textarea>
+          <mat-error *ngIf="message.errors?.['required'] && message.touched" class="texto-advertencia">
+            Por favor, ingrese un mensaje.
+        </mat-error>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-lg buttonEnviar">Enviar</button>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="enviando" class="loading-spinner">
+      <mat-progress-spinner diameter="40" mode="indeterminate"></mat-progress-spinner>
+      <p>Enviando</p>
+  </div>
+  <div *ngIf="isSubscribed" class="text-center">
+      <h2>Mensaje Enviado</h2>
+      <p>En breve recibirás una respuesta por correo electrónico</p>
+  </div>
+  </section>
+</div>

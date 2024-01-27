@@ -1,0 +1,341 @@
+<div class="container mt-2 text-center">
+   
+    <mat-card  class="Dashboard_encuesta" >
+      <mat-card-content>
+
+        <div class="contenedor">
+
+          <div class="titulo">
+            <h2>RESULTADOS DE ENCUESTAS</h2>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="filterPost" placeholder="Buscar por id o procedencia" [(ngModel)]="filterPost" (input)="applyFilter()">
+          </div>
+          <div class="boton_exportar">
+            <button mat-button color="primary" (click)="export()" >Exportar a hoja de datos</button>
+          </div>
+       
+      </div>
+
+      </mat-card-content>
+    </mat-card>
+
+    <mat-tab-group class="Navegacion">
+      <mat-tab label="Tablas" class="navegacion" >
+
+
+    <table [dataSource]="dataSource" mat-table multiTemplateDataRows class="mat-elevation-z8">
+      <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+            <th mat-header-cell *matHeaderCellDef > {{column }} </th>
+            <div *ngIf="column === 'Id'">
+
+              <td #other_content mat-cell *matCellDef="let element" class="resumen"> {{element['id']}} </td>
+            </div>
+            <div *ngIf="column === 'Procedencia'">
+              <td #other_content mat-cell *matCellDef="let element" class="resumen"> {{element.Turista['procedencia']}} </td>
+            </div>
+            <div *ngIf="column === 'Fecha'">
+              <td #other_content mat-cell *matCellDef="let element" class="resumen"> {{ element.createdAt | date: 'dd/MM/yyyy'}} </td>
+            </div>
+
+      </ng-container>
+      <ng-container matColumnDef="expandedDetail" >
+        <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+          <div class="example-element-detail"
+               [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+            <div class="example-element-description tituloPregunta">
+              <p class="pregunta">Procedencia</p>
+              {{element.Turista.procedencia}}
+              <mat-divider></mat-divider>
+            </div>
+            <div class="example-element-description">
+              <p class="pregunta">Edad</p>{{element.Turista.edad}}<mat-divider></mat-divider>
+            </div>
+            <div class="example-element-description">
+              <p class="pregunta">Sexo</p>{{element.Turista.sexo}}<mat-divider></mat-divider>
+            </div>
+            <div class="example-element-description">
+              <p class="pregunta">Acompañante</p>{{element.Turista.acompaniantes}}<mat-divider></mat-divider>
+            </div>
+            <div class="example-element-description">
+              <p class="pregunta">Fecha de ingreso</p>{{element.Turista.ingreso  | date: 'EEEE, d MMMM, y'}}<mat-divider></mat-divider>
+            </div>
+            <div class="example-element-description">
+              <p class="pregunta">Fecha de salida</p>{{element.Turista.salida  | date: 'EEEE, d MMMM, y'}}<mat-divider></mat-divider>
+            </div>
+            <div class="example-element-description">
+              <p class="pregunta">¿A través de qué medio conoció el destino Mina Clavero?</p>
+              <div *ngIf="element.Difusion.television === true">
+                <p>Television</p>
+              </div>
+              <div *ngIf="element.Difusion.pagina === true">
+                <p>Pagina</p>
+              </div>
+              <div *ngIf="element.Difusion.graficos === true">
+                <p>Graficos</p>
+              </div>
+              <div *ngIf="element.Difusion.facebook === true">
+                <p>Facebook</p>
+              </div>
+              <div *ngIf="element.Difusion.recomendacion === true">
+                <p>Recomendacion</p>
+              </div>
+              <div *ngIf="element.Difusion.otros == true">
+                <p>Otros</p>{{element.Difusion.otros}}
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+            <div class="example-element-description">
+              <p class="pregunta">¿Por qué motivo eligió Mina Clavero para pasar sus vacaciones?</p>
+              <div *ngIf="element.Motivo.conocia === true">
+                <p>Conocia</p>
+              </div>
+              <div *ngIf="element.Motivo.recomendacion === true">
+                <p>Recomendacion</p>
+              </div>
+              <div *ngIf="element.Motivo.promocion === true">
+                <p>Promocion</p>
+              </div>
+              <div *ngIf="element.Motivo.tranquilidad === true">
+                <p>Tranquilidad</p>
+              </div>
+              <div *ngIf="element.Motivo.paisajes === true">
+                <p>Paisajes</p>
+              </div>
+              <div *ngIf="element.Motivo.eventos === true">
+                <p>Eventos</p>
+              </div>
+              <div *ngIf="element.Motivo.amabilidad === true">
+                <p>Amabilidad</p>
+              </div>
+              <div *ngIf="element.Motivo.otros == true">
+                <p>Otros</p>{{element.Motivo.otros}}
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+            <div class="example-element-description">
+              <p class="pregunta">En cuanto a su Hospedaje: ¿Ud. llegó a Mina Clavero?</p>
+              <div >
+                {{element.Reserva.reserva}}<mat-divider></mat-divider>
+              </div>
+              <div *ngIf="element.Reserva.medioReserva">
+                <p class="pregunta">Medio reserva:</p>{{element.Reserva.medioReserva}}<mat-divider></mat-divider>
+              </div>
+            </div>
+            <div class="example-element-description">
+              <p class="pregunta">¿Qué tipo de Hospedaje a tomado?</p>
+              <div >
+                {{element.Tipo_Hospedaje.tipo_hospedaje}}
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+            <div class="example-element-description">
+              <p class="pregunta">¿Cómo es el servicio en el hospedaje que ha contratado?</p>
+              <div >
+                {{element.Calificacion_Hospedaje.calificacion_hospedaje}}
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+            <div class="example-element-description">
+              <p class="pregunta">¿Recibió material informativo de la Secretaría de Turismo en el hospedaje donde se alojó?</p>
+              <div >
+                {{element.Material_Informativo.recibioMaterial}}
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+            <div class="example-element-description">
+              <p class="pregunta">¿Ud. pidió información en las oficinas de Turismo de Mina Clavero? ¿En que oficina lo hizo?</p>
+              <div >
+                {{element.Oficina.oficinaOption}}
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+            <div *ngIf="element.Oficina.oficinaOption !== 'No'">
+            <div class="example-element-description">
+              <p class="pregunta">¿Qué tipo de información solicitó en las oficinas de Turismo de Mina Clavero?</p>
+              <div *ngIf="element.Tipo_Informacion.hospedaje === true">
+                <p>Hospedaje</p>
+              </div>
+              <div *ngIf="element.Tipo_Informacion.paseos === true">
+                <p>Paseos</p>
+              </div>
+              <div *ngIf="element.Tipo_Informacion.eventos === true">
+                <p>Eventos</p>
+              </div>
+              <div *ngIf="element.Tipo_Informacion.gastronomia === true">
+                <p>Gastronomia</p>
+              </div>
+              <div *ngIf="element.Tipo_Informacion.turismo_aventura === true">
+                <p>Turismo Aventura</p>
+              </div>
+              <div *ngIf="element.Tipo_Informacion.servicios === true">
+                <p>Servicios</p>
+              </div>
+              <div *ngIf="element.Tipo_Informacion.rutas === true">
+                <p>Rutas</p>
+              </div>
+              <div *ngIf="element.Tipo_Informacion.otros == true">
+                <p>Otros: </p>{{element.Tipo_Informacion.otros}}
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+            <div class="example-element-description">
+              <p class="pregunta">¿A través de que medio solicitó información en las Oficinas de Turismo de Mina Clavero?</p>
+              <div *ngIf="element.Medio_Informacion.personalmente === true">
+                <p>Personalmente</p>
+              </div>
+              <div *ngIf="element.Medio_Informacion.email === true">
+                <p>Email</p>
+              </div>
+              <div *ngIf="element.Medio_Informacion.facebook === true">
+                <p>Facebook</p>
+              </div>
+              <div *ngIf="element.Medio_Informacion.telefonica === true">
+                <p>Telefonica</p>
+              </div>
+              <div *ngIf="element.Medio_Informacion.otros == true">
+                <p>Otros: </p>{{element.Medio_Informacion.otros}}
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+            <div class="example-element-description">
+              <p class="pregunta">¿Qué tipo de material se le entregó en las Oficinas de Turismo?</p>
+              <div *ngIf="element.Tipo_Material.folletos === true">
+                <p>Folletos</p>
+              </div>
+              <div *ngIf="element.Tipo_Material.revistas === true">
+                <p>Revistas</p>
+              </div>
+              <div *ngIf="element.Tipo_Material.planos === true">
+                <p>Planos</p>
+              </div>
+              <div *ngIf="element.Tipo_Material.calcomanias === true">
+                <p>Calcomanias</p>
+              </div>
+              <div *ngIf="element.Tipo_Material.guias === true">
+                <p>Guias</p>
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+            <div class="example-element-description">
+              <p class="pregunta">¿Cómo evalua el tipo el tipo de información brindada por las Oficinas de Turismo de Mina Clavero?</p>
+              <div >
+                {{element.Calificacion_Informacion.calificacion}}
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+            <div class="example-element-description">
+              <p class="pregunta">Aparte de la información solicitada, ¿Se le brindó algún otro tipo de información de su interés?</p>
+              <div >
+                {{element.Otra_Informacion.informacion}}
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+            <div class="example-element-description">
+              <p class="pregunta">¿Qué información se le brindó?</p>
+              <div *ngIf="element.Que_Informacion.espectaculos_MC === true">
+                <p>Espectaculos de Mina Clavero</p>
+              </div>
+              <div *ngIf="element.Que_Informacion.espectaculos_cercanos === true">
+                <p>Espectaculos cercanos</p>
+              </div>
+              <div *ngIf="element.Que_Informacion.recreacion === true">
+                <p>Recreacion</p>
+              </div>
+              <div *ngIf="element.Que_Informacion.deportivas === true">
+                <p>Deportivas</p>
+              </div>
+              <div *ngIf="element.Que_Informacion.aventuras === true">
+                <p>Aventura</p>
+              </div>
+              <div *ngIf="element.Que_Informacion.paseos === true">
+                <p>Paseos</p>
+              </div>
+              <div *ngIf="element.Que_Informacion.otros == true">
+                <p>Otros</p>{{element.Que_Informacion.otros}}
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+          </div>
+            <div class="example-element-description">
+              <p class="pregunta">¿Considera a Mina Clavero como un destino completo en cuanto a su oferta y servicios?</p>
+              <div >
+                {{element.Calificacion_MC.calificacion_MC}}
+                {{element.Calificacion_MC.porque}}
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+            <div class="example-element-description">
+              <p class="pregunta">¿Recomendaría Mina Clavero como destino turístico?</p>
+              <div >
+                {{element.Recomendaria.recomendaria}}
+                {{element.Recomendaria.porque}}
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+            class="example-element-row"
+            [class.example-expanded-row]="expandedElement === element"
+            (click)="expandedElement = expandedElement === element ? null : element">
+        </tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+      </table>
+      <mat-paginator #surveyPaginator [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons></mat-paginator>
+     
+    </mat-tab>
+
+    <mat-tab label="Graficos"> 
+      <app-chart></app-chart>
+      <div class="Espacio_blanco">
+
+      </div>
+    </mat-tab>
+   
+
+      <!-- CONTACTO -->
+      <mat-tab label="Mensajes">
+      <table mat-table
+       [dataSource]="contactSource" multiTemplateDataRows
+       class="mat-elevation-z8">
+  <ng-container matColumnDef="{{column}}" *ngFor="let column of contactsToDisplay">
+    <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+    <div *ngIf="column === 'id'">
+<td #other_content mat-cell *matCellDef="let element" class="resumen"> {{ element.id }} </td>
+
+      <td #other_content mat-cell *matCellDef="let element" class="resumen"> {{element[column]}} </td>
+    </div>
+    <div *ngIf="column === 'Nombre'">
+      <td #other_content mat-cell *matCellDef="let element" class="resumen"> {{element.Name}} </td>
+    </div>
+    <div *ngIf="column === 'Fecha'">
+      <td #other_content mat-cell *matCellDef="let element" class="resumen"> {{ element.createdAt | date: 'dd/MM/yyyy'}} </td>
+
+    </div>
+  </ng-container>
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let element" [attr.colspan]="contactsToDisplay.length">
+      <div class="example-element-detail"
+           [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+          <div class="example-element-description"><p class="pregunta">Nombre</p> {{element.Name}} </div><mat-divider></mat-divider>
+          <div class="example-element-description"><p class="pregunta">Email</p> {{element.email}} </div><mat-divider></mat-divider>
+          <div class="example-element-description"><p class="pregunta">Mensaje</p> {{element.message}} </div><mat-divider></mat-divider>
+      </div>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="contactsToDisplay"></tr>
+  <tr mat-row *matRowDef="let element; columns: contactsToDisplay;"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+</table>
+<mat-paginator #contactPaginator [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons></mat-paginator>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+

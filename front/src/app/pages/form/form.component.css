@@ -1,0 +1,246 @@
+h1{
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+h2{
+    font-family: 'Montserrat', sans-serif
+}
+
+p{
+    font-family: 'Karla', sans-serif;
+    font-size: 16px;
+    margin-bottom: 20px
+}
+
+.preguntas {
+    padding: 40px;
+    max-width: 600px;
+}
+
+.form-card {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #198fbf;
+    opacity: 0.95;
+    padding-bottom: 10px;
+    margin-top: 15px;
+}
+
+.form-content {
+    background-color: #198fbf;
+    color: white;
+    border-radius: 10px;
+    padding-bottom: 10px;
+    margin: 15px; /* Ajusta los márgenes según sea necesario */
+}
+
+.radio-group {
+    
+    flex-direction: column;
+    margin: 15px 0;
+    align-items: flex-start;
+}
+
+.mat-radio-button {
+    margin: 2px;
+}
+
+.text-radio{
+    font-size: 17px;
+    font-family: 'Karla', sans-serif;
+}
+
+
+
+input{
+    border-radius: 10px;
+    border-color: white;
+    border-top: white;
+    border-left: white;
+    height: 25px;
+    margin-left: 10px;
+    width: 250px; 
+}
+
+
+.inputEdad {
+    width: 50px; 
+}
+
+
+label{
+    font-size: 17px;
+    padding-bottom: 10px;
+    font-family: 'Karla', sans-serif;
+}
+
+.edadLabel{
+    padding-top: 15px;
+}
+
+.buttonNext{
+    background-color: rgb(255, 255, 255);
+    color: rgb(51, 101, 194);
+    padding: 5px 20px;
+    font-size: 18px;
+    font-family: 'Karla', sans-serif;
+    transition: transform 0.3s ease-in-out;
+}
+
+.buttonNext:disabled {
+    background-color: rgb(255, 255, 255);
+    color: rgba(51, 101, 194, 0.5);
+    cursor: not-allowed; 
+    transform: none;
+  }
+
+.buttonNext:not(:disabled):hover{
+    background-color: rgb(4, 20, 51);
+    color: white;
+    transform: scale(1.1);
+}
+
+
+.buttonBack{
+    background-color: white;
+    color: rgb(51, 101, 194);
+    padding: 5px 20px;
+    font-size: 18px;
+    font-family: 'Karla', sans-serif;
+}
+
+.buttonBack:hover{
+    background-color: rgb(4, 20, 51);
+    color: white;
+}
+
+.button-Next-Content{
+    display: flex;
+    justify-content: end;
+}
+
+.botonera{
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;   
+}
+
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    opacity: 0 !important; 
+    background-color: #000000 !important;  }
+    
+    .mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: #000000 !important; }
+    
+    .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: #000000 !important;  }
+
+
+.requerido {
+    color: #95eb6e;
+    font-size: 18px;
+    font-family: 'Karla', sans-serif;
+}
+
+/* mat-stepper color*/
+
+::ng-deep .mat-step-header .mat-step-icon-selected {
+    background-color: white;
+    color: #0f749c;
+}
+
+::ng-deep .mat-step-header .mat-step-icon-state-edit {
+    background-color: white;
+    color: #0f749c;
+}
+
+::ng-deep .mat-horizontal-stepper-header{
+    pointer-events: none !important;
+}
+
+.datePickerIcon{
+    transform: translatey(-2px);
+    margin-bottom: 10px;  
+}
+
+.datePicker ::placeholder{
+    color: white;
+}
+
+
+  /*DatePicker Color*/
+::ng-deep .mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: white !important;
+}
+  
+::ng-deep.mat-form-field-underline {
+    /*change color of underline*/
+    background-color: white !important;
+} 
+  
+::ng-deep.mat-form-field-ripple {
+   /*change color of underline when focused*/
+   background-color: white !important;;
+}
+  
+::ng-deep .mat-form-field-label {
+    /*change color of label*/
+    color: white !important;
+}
+  
+mat-datepicker-toggle {
+    color: white !important;
+}
+
+
+
+/* Media Queries */
+@media (max-width: 992px) {
+    .form-card {
+        max-width: 700px;
+    }
+    
+ }
+
+ @media (max-width: 768px) {
+
+    h1{
+        font-size: 20px;
+    }
+
+    label{
+        font-size: 17px;
+    }
+
+    .form-card {
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 576px) {
+
+    h1{
+        font-size: 18px;
+    }
+
+
+    label{
+        font-size: 15px;
+    }
+
+    .form-card {
+        max-width: 450px;
+    }
+
+    input {
+        width: 150px; 
+    } 
+   
+}
